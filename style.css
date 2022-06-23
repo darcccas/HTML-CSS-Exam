@@ -44,22 +44,21 @@ main {
   display: flex;
   position: relative;
 }
+
 .hero-img {
-  max-height: 278px;
-  max-width: 189.62px;
-}
-.hero-img img {
   position: absolute;
   top: -20px;
-  left: 165px;
-  height: 100%;
+  left: 125px;
+  max-height: 100%;
+  max-width: 200%;
+  z-index: -1;
 }
 .hero-text {
   position: relative;
   margin-top: 85px;
   margin-left: 32px;
   text-align: left;
-  max-width: 274px;
+  width: 60%;
   text-overflow: initial;
 }
 .hero-text-p {
@@ -82,11 +81,14 @@ main {
   font-size: 48px;
 }
 button {
-  border: 3px solid;
-  border-color: var(--pink);
-  background-color: var(--light1);
+  border-radius: 80px;
+  border: double 4px transparent;
+  /* border-image: linear-gradient(0deg, #ff3998, #ff8139);
+  border-image-slice: 1; */
+  background: linear-gradient(#eeeeee, #eeeeee) padding-box,
+    linear-gradient(90deg, #ff3998, #ff8139) border-box;
   padding: 20px 50px;
-  border-radius: 40px;
+
   font-weight: 600;
   font-size: 20px;
   line-height: 30px;
@@ -106,7 +108,7 @@ button:hover {
   background-position-x: 85%;
   background-position-y: 50%;
   min-height: 326px;
-  border: 1px solid;
+  border: 2px solid;
   border-color: var(--green);
 }
 .under-h1 {
@@ -157,6 +159,9 @@ button:hover {
 }
 .showcase-text a {
   color: var(--dark2);
+}
+.showcase-cards:hover {
+  cursor: pointer;
 }
 .showcase-cards {
   margin-left: 32px;
@@ -259,10 +264,15 @@ button:hover {
   left: 220px;
   bottom: 0px;
 }
+footer {
+  display: flex;
+  flex-direction: column;
+}
 .logo-icons {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
+  align-self: flex-start;
   padding-left: 32px;
   margin-top: 50px;
 }
@@ -326,11 +336,14 @@ button:hover {
   font-weight: 400;
   font-size: 20px;
   color: var(--dark4);
-  margin-bottom: 105px;
+  margin-bottom: 50px;
 }
-@media only screen and (min-width: 750px) {
+.bottom-desktop {
+  display: none;
+}
+@media only screen and (min-width: 575px) {
   body {
-    min-width: 1280px;
+    max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
     overflow-x: visible;
@@ -339,14 +352,15 @@ button:hover {
     display: none;
   }
   .container-layout {
-    min-width: 1280px;
+    /* background-color: var(--dark3); */
+    max-width: 1280px;
     margin-top: 70px;
-    margin-left: 80px;
   }
   nav {
     display: flex;
     justify-content: space-between;
     margin: 0;
+    /* padding-left: 32px; */
   }
   nav ul {
     display: inline-flex;
@@ -366,43 +380,42 @@ button:hover {
     color: var(--pink);
   }
   /* hero */
-  main {
+  .main {
     display: flex;
     justify-content: space-between;
-    position: relative;
-    margin-top: 200px;
+    position: initial;
+    margin-top: 100px;
   }
+
   .hero-img {
-    max-height: 100%;
-    max-width: 100%;
-  }
-  .hero-img img {
-    position: relative;
+    position: initial;
+    width: fit-content;
   }
   .hero-text {
     flex-shrink: 0;
-    position: relative;
-    margin-top: 0px;
+    position: initial;
+    margin-top: 80px;
     margin-left: 0;
     text-align: left;
-    max-width: 40%;
+    width: 50%;
+    /* padding-left: 32px; */
   }
-  .hero-text-p {
-    color: var(--dark2);
-    font-size: 24px;
-    margin-bottom: 15px;
-    line-height: 30px;
+  .soon {
+    letter-spacing: 2px;
   }
-
+  .hero-text h1 {
+    font-size: 96px;
+  }
   .under-hero {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     background-image: url(./background.svg);
-    background-position-x: 100%;
-    background-position-y: 100%;
+    /* background-position-x: 100%;
+    background-position-y: 100%; */
     min-height: 320px;
-    min-width: 1280px;
+    width: 100%;
+    padding-bottom: 20px;
     border-radius: 15px;
   }
   .press {
@@ -410,63 +423,86 @@ button:hover {
     justify-content: space-between;
     max-height: 117px;
     margin: 122px 0px;
-    width: 1280px;
+    width: 100%;
   }
   .press img:nth-child(1) {
     width: 216px;
     height: 40px;
-    object-fit: initial;
+    object-fit: fill;
     object-position: 0;
   }
   /* card */
   .showcase-text {
-    padding: 0px 32px 32px 0px;
+    padding: 0;
+    margin-bottom: 40px;
   }
 
   .showcase-cards {
     margin-left: 0px;
     display: flex;
     justify-content: space-between;
-    min-width: 1280px;
-    gap: 0px;
+    width: 100%;
+    gap: 15px;
     margin-bottom: 100px;
+    padding-left: 0px;
   }
+
   /* upsell */
   .upsell {
-    justify-content: space-between;
-    margin-left: 0px;
-    width: fit-content;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: flex-end;
+    margin: 0px;
+    /* margin-right: 0; */
+    max-width: 100%;
+    padding-top: 70px;
+    /* padding-left: 32px; */
+  }
+  .upsell-text {
+    max-width: 55%;
   }
   .upsell h1 {
-    width: 100%;
+    width: auto;
+    font-size: 68px;
   }
   .upsell-text-p {
-    width: 100%;
+    width: auto;
   }
   .upsell img {
-    position: relative;
-    width: 220%;
+    position: initial;
+    max-width: 200%;
+    max-height: 200%;
+    padding-left: 150px;
   }
   /* bottom */
   footer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    flex-direction: row;
+    align-self: auto;
     margin-top: 100px;
+
+    /* padding-right: 32px; */
   }
   .logo-icons {
-    padding-left: 0px;
-    margin-top: 0px;
+    padding: 0;
+    margin-top: 0;
   }
-
   .contact {
-    margin-top: 0px;
+    margin-top: 0;
   }
   .social {
-    margin-top: 0px;
+    margin-top: 0;
   }
 
   .bottom {
-    margin-left: 0px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 0;
+    margin-top: 40px;
+    margin-bottom: 30px;
+  }
+  .bottom-desktop {
+    display: contents;
   }
 }
